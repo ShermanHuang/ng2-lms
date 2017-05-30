@@ -3,6 +3,8 @@ import { Http } from '@angular/http';
 
 import { BOOKS } from '../data/books-mock';
 import { Book } from '../models/books';
+import { USERS } from '../data/user-mock';
+import { User } from '../models/users';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
@@ -29,6 +31,16 @@ export class InventoryService {
     loadInventoryUsingObservable(): Observable<Book[]> {
         return this.http.get('app/data/books.json').map(res => res.json());
     }
+    loadInventoryUsingPromise1(): Promise<User[]> {
+        return new Promise(resolve =>
+            setTimeout(resolve, 2000))
+            .then(() => {
+                return this.http.get('app/data/users.json').toPromise().then(response => response.json());
+            });
+    }
+    loadInventoryUsingObservable1(): Observable<User[]> {
+        return this.http.get('app/data/users.json').map(res => res.json());
+    }    
     getBookById(id: number){
         return this.loadInventory().find(book => book.bookId == id);
     }

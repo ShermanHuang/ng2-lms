@@ -33,6 +33,18 @@ var InventoryService = (function () {
     InventoryService.prototype.loadInventoryUsingObservable = function () {
         return this.http.get('app/data/books.json').map(function (res) { return res.json(); });
     };
+    InventoryService.prototype.loadInventoryUsingPromise1 = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            return setTimeout(resolve, 2000);
+        })
+            .then(function () {
+            return _this.http.get('app/data/users.json').toPromise().then(function (response) { return response.json(); });
+        });
+    };
+    InventoryService.prototype.loadInventoryUsingObservable1 = function () {
+        return this.http.get('app/data/users.json').map(function (res) { return res.json(); });
+    };
     InventoryService.prototype.getBookById = function (id) {
         return this.loadInventory().find(function (book) { return book.bookId == id; });
     };

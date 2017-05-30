@@ -1,3 +1,25 @@
+<div class="">
 <div class="row">
-  <h1 class="text-center">USERS</h1>
+  <h1 class="text-center">BOOKS</h1>
+</div>
+<div class="row">
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th></th>
+          <th>userId</th>
+          <th>username</th>
+          <th>Borrowed Books</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | searchpipe: searchText | sortBy: sortByKey">
+          <td class="text-center"><img src="{{user.imgUrl}}" width="60" class="img-circle border"/></td>
+          <td>{{user.userId}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.noOfBooks}}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
 </div>
