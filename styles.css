@@ -1,0 +1,9 @@
+/* Master Styles */
+
+.bookview {
+    border-bottom: 5px solid #9d9d9d;
+    padding: 20px 0px;
+}
+.list-group-item{
+    border: 0;
+}

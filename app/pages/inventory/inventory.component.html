@@ -1,0 +1,43 @@
+<div class="col-md-12">
+  <h2 class="text-center">View Books</h2>
+  <div class="col-md-6">
+    <label>Search by Title</label>&nbsp;
+    <input type="text" [(ngModel)]="searchText" class="form-control" />
+  </div>
+  <div class="col-md-6">
+    <label>Sort by</label>&nbsp;
+    <select [(ngModel)]="sortByKey" class="form-control">
+      <option value="bookId">Book Id</option>
+      <option value="bookTitle">Title</option>
+      <option value="topic">Topic</option>
+      <option value="author">Author</option>
+      <option value="cost">Cost</option>
+    </select>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="clearfix">&nbsp;</div>
+  <div class="row">
+    <div *ngFor="let book of books | searchpipe: searchText | sortBy: sortByKey" class="col-md-12 bookview">
+      <div class="col-md-3">
+        <img src="{{book.imgUrl}}" class="img-thumbnail" />
+      </div>
+      <div class="col-md-9">
+        <ul class="list-group">
+          <li class="list-group-item"><label>Book ID:</label>&nbsp;{{book.bookId}}</li>
+          <li class="list-group-item"><label>Title:</label>&nbsp;{{book.bookTitle}}</li>
+          <li class="list-group-item"><label>Topic:</label>&nbsp;{{book.topic}}</li>
+          <li class="list-group-item"><label>Author:</label>&nbsp;{{book.author}}</li>
+          <li class="list-group-item"><label>Cost:</label>&nbsp;{{book.cost}}</li>
+          <li class="list-group-item">
+              <strong class="text-danger" *ngIf="book.issued">Not Available</strong>
+              <strong class="text-success" *ngIf="!book.issued">Available</strong>          
+          </li>
+          <li class="list-group-item">
+            <a [routerLink]="['/viewdetails',  book.bookId ]" routerLinkActive="active" class="btn btn-primary pull-right">View Details</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

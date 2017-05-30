@@ -1,0 +1,29 @@
+<div class="col-md-12">
+  <h2 class="text-center">Selected Book Details</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <a class="btn btn-danger" routerLink="/home"><span class="glyphicon glyphicon-arrow-left"></span></a>
+    </div>
+    <div class="col-md-12 bookview">
+      <div class="col-md-3">
+        <img src="{{book.imgUrl}}" class="img-thumbnail" />
+      </div>
+      <div class="col-md-9">
+        <ul class="list-group">
+          <li class="list-group-item"><label>Book ID:</label>&nbsp;{{book.bookId}}</li>
+          <li class="list-group-item"><label>Title:</label>&nbsp;{{book.bookTitle}}</li>
+          <li class="list-group-item"><label>Topic:</label>&nbsp;{{book.topic}}</li>
+          <li class="list-group-item"><label>Author:</label>&nbsp;{{book.author}}</li>
+          <li class="list-group-item"><label>Cost:</label>&nbsp;{{book.cost}}</li>
+          <li class="list-group-item">
+              <strong class="text-danger" *ngIf="book.issued">Not Available</strong>
+              <strong class="text-success" *ngIf="!book.issued">Available</strong>          
+          </li>
+          <li class="list-group-item">
+            <a class="btn btn-warning pull-right">Book Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
