@@ -26,9 +26,9 @@ var AdminLoginComponent = (function () {
         this.loading = true;
         console.log(this.model.username, this.model.password);
         if (this.model.username == 'admin' && this.model.password == 'admin') {
-            this.router.navigateByUrl('home');
             this.loading = false;
             this.errorMessage = '';
+            this.router.navigateByUrl('dashboard');
         }
         else {
             this.errorMessage = 'Incorrect Username and Password ';

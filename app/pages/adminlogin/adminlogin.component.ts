@@ -22,10 +22,10 @@ export class AdminLoginComponent implements OnInit {
     login() {
         this.loading = true;
         console.log(this.model.username, this.model.password);
-        if (this.model.username == 'admin' && this.model.password == 'admin') {
-            this.router.navigateByUrl('home');
+        if (this.model.username == 'admin' && this.model.password == 'admin') {            
             this.loading = false;
             this.errorMessage = '';
+            this.router.navigateByUrl('dashboard');
         } else {
             this.errorMessage = 'Incorrect Username and Password ';
             this.loading = false;

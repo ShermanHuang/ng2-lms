@@ -12,12 +12,23 @@ var inventory_component_1 = require("../pages/inventory/inventory.component");
 var viewdetails_component_1 = require("../pages/viewdetails/viewdetails.component");
 var login_component_1 = require("../pages/login/login.component");
 var adminlogin_component_1 = require("../pages/adminlogin/adminlogin.component");
+var dashboard_component_1 = require("../pages/dashboard/dashboard.component");
+var users_component_1 = require("../pages/users/users.component");
+var books_component_1 = require("../pages/books/books.component");
 var routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: inventory_component_1.InventoryComponent },
     { path: 'viewdetails/:id', component: viewdetails_component_1.ViewDetailsComponent },
     { path: 'userLogin', component: login_component_1.LoginComponent },
-    { path: 'adminLogin', component: adminlogin_component_1.AdminLoginComponent }
+    { path: 'adminLogin', component: adminlogin_component_1.AdminLoginComponent },
+    {
+        path: 'dashboard', component: dashboard_component_1.DashboardComponent,
+        children: [
+            { path: '', redirectTo: 'users', pathMatch: 'full' },
+            { path: 'users', component: users_component_1.UserComponent },
+            { path: 'books', component: books_component_1.BooksComponent }
+        ]
+    },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

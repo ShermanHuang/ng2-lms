@@ -1,0 +1,16 @@
+<div class="row">
+<div class="col-md-3">
+  <div class="list-group">
+    <a routerLink="/home" routerLinkActive="active"  class="list-group-item">
+    <span class="glyphicon glyphicon-arrow-left"></span> Go Back to Home
+    </a>    
+    <a routerLink="/dashboard/users" routerLinkActive="active"  class="list-group-item active">
+    USERS
+    </a>
+    <a routerLink="/dashboard/books" routerLinkActive="active" class="list-group-item">ADD BOOKS</a>
+  </div>
+</div>
+<div class="col-md-9">
+<router-outlet></router-outlet>
+</div>
+</div>
