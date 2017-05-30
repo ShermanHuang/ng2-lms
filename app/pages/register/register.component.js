@@ -11,44 +11,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var AdminLoginComponent = (function () {
-    function AdminLoginComponent(route, router) {
+var inventory_service_1 = require("../../providers/inventory.service");
+var RegisterComponent = (function () {
+    function RegisterComponent(inventoryService, route, router) {
+        this.inventoryService = inventoryService;
         this.route = route;
         this.router = router;
         this.model = {};
         this.loading = false;
-        this.sessionUser = "";
         this.errorMessage = '';
     }
-    AdminLoginComponent.prototype.ngOnInit = function () {
-        this.sessionUser = JSON.parse(localStorage.getItem('loginUser'));
-        if (this.sessionUser) {
-            this.router.navigateByUrl('home');
-        }
+    RegisterComponent.prototype.ngOnInit = function () {
+        this.users = JSON.parse(localStorage.getItem('users'));
+        var keys = Object.keys(this.users);
+        var id = this.users[keys.length - 1].userId;
+        this.model.userId = ++id;
+        this.model.noOfBooks = 0;
+        this.model.imgUrl = 'images/profile.png';
+        this.model.books = [];
     };
-    AdminLoginComponent.prototype.login = function () {
+    RegisterComponent.prototype.register = function () {
         this.loading = true;
-        console.log(this.model.username, this.model.password);
-        if (this.model.username == 'admin' && this.model.password == 'admin') {
-            this.loading = false;
+        if (this.model.userId) {
+            this.users.push(this.model);
             this.errorMessage = '';
-            localStorage.setItem('loginUser', JSON.stringify(this.model.username));
-            this.router.navigateByUrl('dashboard');
+            localStorage.setItem('users', JSON.stringify(this.users));
+            this.router.navigateByUrl('userLogin');
         }
         else {
             this.errorMessage = 'Incorrect Username and Password ';
-            this.loading = false;
         }
+        this.loading = false;
     };
-    return AdminLoginComponent;
+    return RegisterComponent;
 }());
-AdminLoginComponent = __decorate([
+RegisterComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
-        templateUrl: 'adminlogin.component.html'
+        templateUrl: 'register.component.html',
+        providers: [inventory_service_1.InventoryService]
     }),
-    __metadata("design:paramtypes", [router_1.ActivatedRoute,
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService,
+        router_1.ActivatedRoute,
         router_1.Router])
-], AdminLoginComponent);
-exports.AdminLoginComponent = AdminLoginComponent;
-//# sourceMappingURL=adminlogin.component.js.map
+], RegisterComponent);
+exports.RegisterComponent = RegisterComponent;
+//# sourceMappingURL=register.component.js.map

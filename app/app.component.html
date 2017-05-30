@@ -16,10 +16,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a routerLink="/home" routerLinkActive="active">HOME</a></li>
+                <li *ngIf="sessionUser=='admin'" routerLinkActive="active"><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+                
+                <li *ngIf="sessionUser"> <a href> Welcome <b class="text-success">{{sessionUser}}</b></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li routerLinkActive="active"><a routerLink="/userLogin" routerLinkActive="active" >USER LOGIN</a></li>
-                <li routerLinkActive="active"><a routerLink="/adminLogin" routerLinkActive="active">ADMIN LOGIN</a></li>
+                <li routerLinkActive="active" ><a routerLink="/userLogin" routerLinkActive="active" [hidden]="sessionUser">USER LOGIN</a></li>
+                <li routerLinkActive="active"><a routerLink="/adminLogin" routerLinkActive="active" [hidden]="sessionUser">ADMIN LOGIN</a></li>
+                <li *ngIf="sessionUser"><a href (click)="logout()">LOGOUT</a></li>                
             </ul>
         </div>
         <!-- /.navbar-collapse -->

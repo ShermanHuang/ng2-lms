@@ -18,10 +18,7 @@ var UserComponent = (function () {
         this.router = router;
     }
     UserComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.inventoryService.loadInventoryUsingObservable1().subscribe(function (users) {
-            _this.users = users;
-        }, function (error) { });
+        this.users = JSON.parse(localStorage.getItem('users'));
     };
     return UserComponent;
 }());

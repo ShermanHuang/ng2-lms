@@ -12,25 +12,19 @@ import { Book } from '../../models/books';
 })
 export class BooksComponent implements OnInit {
 
-private books: Book[];
-private sortByKey: string;
-constructor(private inventoryService:InventoryService, private router: Router) { }
+    private books: Book[];
+    private sortByKey: string;
+    constructor(private inventoryService: InventoryService, private router: Router) { }
 
-ngOnInit() {
-    this.sortByKey = "bookId";
-    // this.inventoryService.loadInventoryUsingPromise().then(response => {
-    //     this.books = response;
-    // })
-
-    this.inventoryService.loadInventoryUsingObservable().subscribe(books => {
-        this.books = books;
-    }, error => {});
-}
-edit(){
-console.log("Edit clicked");
-}
-openDetails(id: number){
-    this.router.navigate(['/reports']);
-}
+    ngOnInit() {
+        this.sortByKey = "bookId";
+        this.books = JSON.parse(localStorage.getItem('books'));
+    }
+    edit() {
+        console.log("Edit clicked");
+    }
+    openDetails(id: number) {
+        this.router.navigate(['/reports']);
+    }
 
 }

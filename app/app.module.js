@@ -12,6 +12,7 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var app_component_1 = require("./app.component");
 var login_component_1 = require("./pages/login/login.component");
+var register_component_1 = require("./pages/register/register.component");
 var adminlogin_component_1 = require("./pages/adminlogin/adminlogin.component");
 var inventory_component_1 = require("./pages/inventory/inventory.component");
 var viewdetails_component_1 = require("./pages/viewdetails/viewdetails.component");
@@ -39,6 +40,7 @@ AppModule = __decorate([
             inventory_component_1.InventoryComponent,
             viewdetails_component_1.ViewDetailsComponent,
             login_component_1.LoginComponent,
+            register_component_1.RegisterComponent,
             adminlogin_component_1.AdminLoginComponent,
             dashboard_component_1.DashboardComponent,
             users_component_1.UserComponent,

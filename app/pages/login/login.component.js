@@ -17,14 +17,39 @@ var LoginComponent = (function () {
         this.router = router;
         this.model = {};
         this.loading = false;
+        this.loginIs = false;
+        this.sessionUser = '';
+        this.message = '';
     }
     LoginComponent.prototype.ngOnInit = function () {
-        // reset login status
+        this.users = JSON.parse(localStorage.getItem('users'));
+        this.sessionUser = JSON.parse(localStorage.getItem('loginUser'));
+        if (this.sessionUser) {
+            this.router.navigateByUrl('home');
+        }
     };
     LoginComponent.prototype.login = function () {
         this.loading = true;
+        for (var i = 0; i < this.users.length; i++) {
+            if (this.users[i].username == this.model.username && this.users[i].password == this.model.password) {
+                this.loginIs = true;
+            }
+            else {
+                this.loginIs = false;
+            }
+        }
+        if (this.loginIs) {
+            this.message = 'login success';
+            this.loading = false;
+            localStorage.setItem('loginUser', JSON.stringify(this.model.username));
+            location.reload();
+            this.router.navigateByUrl('home');
+        }
+        else {
+            this.message = 'Incorrect Login';
+            this.loading = false;
+        }
         console.log(this.model.username, this.model.password);
-        this.loading = false;
     };
     return LoginComponent;
 }());

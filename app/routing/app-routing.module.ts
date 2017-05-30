@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { InventoryComponent } from '../pages/inventory/inventory.component';
 import { ViewDetailsComponent } from '../pages/viewdetails/viewdetails.component';
 import { LoginComponent } from '../pages/login/login.component';
+import { RegisterComponent } from '../pages/register/register.component';
 import { AdminLoginComponent } from '../pages/adminlogin/adminlogin.component';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
 import { UserComponent } from '../pages/users/users.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'home', component: InventoryComponent },
     { path: 'viewdetails/:id', component: ViewDetailsComponent },
     { path: 'userLogin', component: LoginComponent },
+     { path: 'register', component: RegisterComponent },
     { path: 'adminLogin', component: AdminLoginComponent },
     {
         path: 'dashboard', component: DashboardComponent,

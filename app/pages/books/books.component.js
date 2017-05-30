@@ -18,14 +18,8 @@ var BooksComponent = (function () {
         this.router = router;
     }
     BooksComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.sortByKey = "bookId";
-        // this.inventoryService.loadInventoryUsingPromise().then(response => {
-        //     this.books = response;
-        // })
-        this.inventoryService.loadInventoryUsingObservable().subscribe(function (books) {
-            _this.books = books;
-        }, function (error) { });
+        this.books = JSON.parse(localStorage.getItem('books'));
     };
     BooksComponent.prototype.edit = function () {
         console.log("Edit clicked");

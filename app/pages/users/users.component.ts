@@ -16,9 +16,7 @@ export class UserComponent implements OnInit {
     constructor(private inventoryService: InventoryService, private router: Router) { }
 
     ngOnInit() {
-        this.inventoryService.loadInventoryUsingObservable1().subscribe(users => {
-            this.users = users;
-        }, error => { });
+            this.users = JSON.parse(localStorage.getItem('users'));
     }
 
 }

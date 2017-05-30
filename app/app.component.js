@@ -10,17 +10,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var inventory_service_1 = require("./providers/inventory.service");
+;
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(inventoryService, router) {
+        this.inventoryService = inventoryService;
+        this.router = router;
+        this.sessionUser = '';
+        this.sessionUser = JSON.parse(localStorage.getItem('loginUser'));
+        if (!JSON.parse(localStorage.getItem('users'))) {
+            this.inventoryService.loadInventoryUsingObservable1().subscribe(function (users) {
+                localStorage.setItem('users', JSON.stringify(users));
+            }, function (error) { });
+        }
+        if (!JSON.parse(localStorage.getItem('books'))) {
+            this.inventoryService.loadInventoryUsingObservable().subscribe(function (books) {
+                localStorage.setItem('books', JSON.stringify(books));
+            }, function (error) { });
+        }
     }
+    AppComponent.prototype.logout = function () {
+        localStorage.removeItem('loginUser');
+        location.reload();
+        this.router.navigateByUrl('home');
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        templateUrl: 'app/app.component.html'
+        templateUrl: 'app/app.component.html',
+        providers: [inventory_service_1.InventoryService]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [inventory_service_1.InventoryService, router_1.Router])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
